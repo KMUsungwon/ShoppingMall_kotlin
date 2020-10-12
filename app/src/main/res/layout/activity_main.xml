@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="상품 목록"
+        android:textColor="@android:color/background_dark"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"/>
+
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp">
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:srcCompat="@drawable/ipad" />
+
+            <CheckBox
+                android:id="@+id/img1_check"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="iPad Pro" />
+
+            <TextView
+                android:id="@+id/img1_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1,190,000₩" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="100dp"
+            >
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/watch" />
+
+            <CheckBox
+                android:id="@+id/img2_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apple Watch" />
+
+            <TextView
+                android:id="@+id/img2_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="359,000₩" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="100dp">
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/macbook" />
+
+            <CheckBox
+                android:id="@+id/img3_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mac Pro" />
+
+            <TextView
+                android:id="@+id/img3_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1,750,000₩" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="100dp">
+        <ImageView
+            android:id="@+id/img4"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/airpods" />
+
+            <CheckBox
+                android:id="@+id/img4_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Air pods" />
+
+            <TextView
+                android:id="@+id/img4_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="150,000₩" />
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/purchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="100dp"
+        android:text="구매" />
+
+    <Button
+        android:id="@+id/bucket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장바구니"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dp"
+        />
+
+</RelativeLayout>
