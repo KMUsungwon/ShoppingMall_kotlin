@@ -13,7 +13,9 @@
         android:text="상품 목록"
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        />
 
 
         <LinearLayout
