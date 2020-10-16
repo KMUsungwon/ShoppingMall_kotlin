@@ -4,39 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BucketActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".BucketActivity">
 
     <TextView
         android:id="@+id/bucketHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="장바구니 목록"
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
+        android:gravity="center_horizontal" />
+
+    <ListView
+        android:id="@+id/view_item"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="80px"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-    <Button
-        android:id="@+id/gohome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="홈으로"
-        android:layout_gravity="bottom"
-        android:layout_marginRight="10dp"
-        />
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp">
     <Button
-        android:id="@+id/gopurchase"
+        android:id="@+id/goPurchase"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="구매하기"
-        android:layout_gravity="bottom"/>
-    </LinearLayout>
+        android:background="@drawable/radius"
+        android:layout_marginRight="10sp"
+        android:text="구매하기" />
 
+    <Button
+        android:id="@+id/goHome"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius"
+        android:text="홈으로" />
+        <Button
+            android:id="@+id/deleteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/radius"
+            android:text="제거하기"/>
+    </LinearLayout>
 
 </LinearLayout>
