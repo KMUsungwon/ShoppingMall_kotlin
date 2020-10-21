@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "895973097728",
+    "firebase_url": "https://mobile-midterm-73472.firebaseio.com",
+    "project_id": "mobile-midterm-73472",
+    "storage_bucket": "mobile-midterm-73472.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895973097728:android:162e082c14a291320ff3e5",
+        "android_client_info": {
+          "package_name": "mobile.shoppingMall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895973097728-vq2ooa9up968uebro64llelonde0gdu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiwLEi_5ZVM1MvhCLcoQIaMjpVhRPXJlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895973097728-vq2ooa9up968uebro64llelonde0gdu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

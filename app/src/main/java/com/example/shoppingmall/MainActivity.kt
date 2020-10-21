@@ -1,36 +1,27 @@
 package com.example.shoppingmall
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.util.Log.d
 import android.view.ContextThemeWrapper
-import android.view.MotionEvent
-import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
-import kotlin.math.log
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
+
 
 class MainActivity : AppCompatActivity() {
     // database 연동하기 위한 변수 설정
     // itemList 이름을 가진 경로를 myRef 변수에 설정
-    val database = Firebase.database
-    val myRef = database.getReference("itemList")
+    var database: FirebaseDatabase? = FirebaseDatabase.getInstance()
+    var myRef = database!!.getReference("itemList")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setTitle("쇼핑몰 홈")
+
 
         val btnPurchase: Button = findViewById(R.id.purchase) // 구매 버튼 변수
         val btnBucket: Button = findViewById(R.id.bucket) // 장바구니 버튼 변수
@@ -62,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "총합: "+price, Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, PurchaseActivity::class.java)
-            startActivityForResult(intent, 0)
+            startActivity(intent)
 
             price = 0
         }

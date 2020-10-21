@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ShoppingMall</string>
+    <string name="purchaseItem">구매하기</string>
 </resources>

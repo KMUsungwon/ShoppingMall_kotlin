@@ -114,14 +114,10 @@ class BucketActivity : AppCompatActivity() {
 
 
                 btnDelete.setOnClickListener {
-                    val check = view_item.checkedItemPositions
-                    Log.d("size:",check.size().toString())
-                    (itemAdapter.count downTo 0)
-                        .filter { check.get(it) }
-                        .forEach { myItem.removeAt(it); myRef.child(myItem[it].itemName).removeValue() }
 
-                    view_item.clearChoices()
-                    itemAdapter.notifyDataSetChanged()
+//
+//                    view_item.clearChoices()
+//                    itemAdapter.notifyDataSetChanged()
                 }
 //
 //                    var check = listview.checkedItemPosition
@@ -151,7 +147,7 @@ class BucketActivity : AppCompatActivity() {
 
 //리스트뷰 안의 내용을 구성할 변수를 담는 클래스
 
-class ItemList constructor(itemName: String,itemPrice: String,photo: String, selected: Boolean) {
+class ItemList(itemName: String,itemPrice: String,photo: String, selected: Boolean) {
     var itemName: String = itemName
     var itemPrice: String = itemPrice
     var photo: String = photo
