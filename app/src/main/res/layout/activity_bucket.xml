@@ -22,7 +22,15 @@
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        android:layout_marginTop="80px"/>
+        android:layout_marginTop="80px"
+        android:choiceMode="multipleChoice"/>
+
+    <TextView
+        android:id="@+id/sumPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -46,14 +54,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/radius"
         android:text="홈으로" />
+
         <Button
-            android:id="@+id/deleteItem"
+            android:id="@+id/btnDelete"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            style="@style/Widget.AppCompat.Button.Borderless"
             android:background="@drawable/radius"
-            android:text="제거하기"/>
+            android:text="제거하기"
+            android:layout_marginLeft="10sp"/>
+
     </LinearLayout>
 
 </LinearLayout>

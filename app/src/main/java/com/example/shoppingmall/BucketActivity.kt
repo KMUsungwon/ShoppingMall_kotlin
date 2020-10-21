@@ -1,32 +1,37 @@
 package com.example.shoppingmall
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.icu.lang.UScript.getName
+import android.icu.util.ULocale.getName
+import android.media.Image
 import android.os.Bundle
+import android.util.AttributeSet
+import android.util.Log
+import android.util.SparseBooleanArray
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.View.OnClickListener
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.Debug.getName
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_bucket.*
-
-
-// 데이터 베이스 접근을 위한 변수 설정
-
-
-
+import kotlinx.android.synthetic.main.main_layout_item.view.*
 
 class BucketActivity : AppCompatActivity() {
-    val database = Firebase.database
-    var myRef = database.getReference("itemList")
+    private val database = Firebase.database
+    val myRef = database.getReference("itemList")
 
-    val mRootDatabaseReference = FirebaseDatabase.getInstance().reference
-    val mItemListDataSet =
-        mRootDatabaseReference.child("itemList") //닉네임 담아놀 하위 데이터베이스
 
+    private val myItem = arrayListOf<ItemList>()
+    private lateinit var itemAdapter: MainListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,45 +41,108 @@ class BucketActivity : AppCompatActivity() {
         //구매 페이지, 메인 페이지로 이동하기 위한 버튼 변수
         val btnHome: Button = findViewById(R.id.goHome)
         val btnPurchase: Button = findViewById(R.id.goPurchase)
-        val btnDelete: Button = findViewById(R.id.deleteItem)
-
-        var myItem = ArrayList<ItemList>()
+        val btnDelete: Button = findViewById(R.id.btnDelete)
 
 
-        mItemListDataSet.addListenerForSingleValueEvent(object : ValueEventListener {
+        var sumText = findViewById<TextView>(R.id.sumPrice)
+        var sumPrice: Int = 0
+
+
+        myRef.addValueEventListener(object : ValueEventListener {
+
+
             override fun onCancelled(dataSnapshot: DatabaseError) {
             }
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 myItem.clear()
-                for(snapshot in dataSnapshot.children) {
+                for (snapshot in dataSnapshot.children) {
                     // 키 값을 비교해서 일치하면 ArrayList에 값을 차례대로 할당하여 추가한다.
                     when {
-                        snapshot.key.toString() == "iPad" -> myItem.add(ItemList(snapshot.key.toString(),snapshot.value.toString(),"ipad"))
-                        snapshot.key.toString() == "macBook" -> myItem.add(ItemList(snapshot.key.toString(),snapshot.value.toString(),"macbook"))
-                        snapshot.key.toString() == "airPods" -> myItem.add(ItemList(snapshot.key.toString(),snapshot.value.toString(),"airpods"))
-                        snapshot.key.toString() == "appleWatch" -> myItem.add(ItemList(snapshot.key.toString(),snapshot.value.toString(),"watch"))
+                        snapshot.key.toString() == "iPad" -> {
+                            myItem.add(
+                                ItemList(
+                                    snapshot.key.toString(),
+                                    snapshot.value.toString(),
+                                    "ipad",true
+                                )
+                            )
+                            sumPrice += 1190000
+                        }
+                        snapshot.key.toString() == "macBook" -> {
+                            myItem.add(
+                                ItemList(
+                                    snapshot.key.toString(),
+                                    snapshot.value.toString(),
+                                    "macbook",true
+                                )
+                            )
+                            sumPrice += 1750000
+                        }
+
+                        snapshot.key.toString() == "airPods" -> {
+                            myItem.add(
+                                ItemList(
+                                    snapshot.key.toString(),
+                                    snapshot.value.toString(),
+                                    "airpods",true
+                                )
+                            )
+                            sumPrice += 150000
+                        }
+                        snapshot.key.toString() == "appleWatch" -> {
+                            myItem.add(
+                                ItemList(
+                                    snapshot.key.toString(),
+                                    snapshot.value.toString(),
+                                    "watch", true
+                                )
+                            )
+                            sumPrice += 359000
+                        }
                     }
 
                 }
                 //리스트뷰에 어댑터를 연결 후 값을 렌더링 한다.
-                val itemAdapter = MainListAdapter(this@BucketActivity,myItem)
+                itemAdapter = MainListAdapter(this@BucketActivity, myItem)
                 view_item.adapter = itemAdapter
-//                btnDelete.setOnClickListener {
-//                    for(snapshot in myItem) {
+                view_item.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+
+                sumText.text = "총 금액 : $sumPrice"
+                sumPrice = 0
+
+
+
+                btnDelete.setOnClickListener {
+                    val check = view_item.checkedItemPositions
+                    Log.d("size:",check.size().toString())
+                    (itemAdapter.count downTo 0)
+                        .filter { check.get(it) }
+                        .forEach { myItem.removeAt(it); myRef.child(myItem[it].itemName).removeValue() }
+
+                    view_item.clearChoices()
+                    itemAdapter.notifyDataSetChanged()
+                }
 //
+//                    var check = listview.checkedItemPosition
+//                    Log.d("선택된 놈", check.toString())
+//
+//                    if(check >=0 && check < itemAdapter.count){
+//                        myRef.child(myItem[check].itemName).removeValue()
+//                        itemAdapter.notifyDataSetChanged()
 //                    }
+//
 //                }
             }
 
         })
-
-
 
         //메인 페이지로 이동
         btnHome.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
     }
 
 }
@@ -82,40 +150,57 @@ class BucketActivity : AppCompatActivity() {
 
 
 //리스트뷰 안의 내용을 구성할 변수를 담는 클래스
-class ItemList(val itemName: String, val itemPrice: String, val photo: String)
 
-// Adapter를 만들기 위한 클래스
-class MainListAdapter (val context: Context, val myItem: ArrayList<ItemList>) : BaseAdapter() {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+class ItemList constructor(itemName: String,itemPrice: String,photo: String, selected: Boolean) {
+    var itemName: String = itemName
+    var itemPrice: String = itemPrice
+    var photo: String = photo
+    var selected: Boolean = selected
 
-        //item을 Adapter에서 사용할 View형태로 부풀려주는 역할
-        val view: View = LayoutInflater.from(context).inflate(R.layout.main_layout_item, null)
+    fun getName(): String {
+        return itemName
+    }
+    fun setName(itemName: String) {
+        this.itemName = itemName
+    }
+    fun getPrice(): String {
+        return itemPrice
+    }
+    fun setPrice(itemPrice: String) {
+        this.itemPrice = itemPrice
+    }
+    fun getImg(): String {
+        return photo
+    }
+    fun setImg(photo: String) {
+        this.photo = photo
+    }
+    fun isSelected(): Boolean {
+        return selected
+    }
+    fun setSelect(selected: Boolean) {
+        this.selected = selected
+    }
+}
 
-        // 위에서 생성된 View를 layout_item.xml 파일의 각 뷰와 연결
-        val itemTitle = view.findViewById<TextView>(R.id.item_title)
-        val itemPrice = view.findViewById<TextView>(R.id.item_price)
-        val itemImg = view.findViewById<ImageView>(R.id.item_img)
 
-        // 이미지, 상품 데이터를 ImageView, TextView 안에 담는다.
-        val items = myItem[position]
-        val resourceID = context.resources.getIdentifier(items.photo, "drawable", context.packageName)
-        itemImg.setImageResource(resourceID)
-        itemTitle.text = items.itemName
-        itemPrice.text = items.itemPrice
 
-        return view
+
+class CheckableLayout(context: Context,attributeSet: AttributeSet) : LinearLayout(context,attributeSet),Checkable{
+
+    override fun isChecked(): Boolean{
+
+        return delete_check.isChecked
     }
 
-    override fun getItem(position: Int): Any {
-        return myItem[position]
+    override fun toggle() {
+        isChecked = !delete_check.isChecked
     }
 
-    override fun getItemId(position: Int): Long {
-        return 0
+    override fun setChecked(checked: Boolean) {
+        if(delete_check.isChecked != checked ) delete_check.isChecked = checked
     }
 
-    override fun getCount(): Int {
-        return myItem.size
-    }
-
+    //checkBox.isChecked 는 레이아웃 안에 존재하는 체크박스의 체크여부를 말하고
+    //isChecke 홀로 있는 것은 체크박스를 담고 있는 뷰그룹 전체를 가리킴
 }
