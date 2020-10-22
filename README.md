@@ -24,7 +24,7 @@
 * 구매 페이지와 장바구니 페이지에서 intent를 통해 넘어온 값들을 화면에 출력
 * 주소와 연락처를 입력 후 구매 버튼 클릭 시 상품 구매 완료
 * 주소 또는 연락처 미표기 시에 오류 메시지 출력
-### Product lass (상품 정보 저장 클래스)
+### Product class (상품 정보 저장 클래스)
 * 상품 이름, 상품 가격, 상품 이미지 파일 이름을 인자로 갖는 클래스
 ### MainListAdapter class
 * BucketActivity 의 ListView와 연결하기 위한 Adapter Class
