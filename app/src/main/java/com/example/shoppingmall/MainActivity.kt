@@ -33,29 +33,37 @@ class MainActivity : AppCompatActivity() {
         val airPods: CheckBox = findViewById(R.id.img4_check)
 
 
-        var price: Int = 0 ; // 처음에 제품 가격의 합을 0으로 초기화
+        var clicked: Boolean = false
 
         // 구매 버튼 클릭 시 기능 구현
         btnPurchase.setOnClickListener {
+            val intent = Intent(this, PurchaseActivity::class.java)
             if(iPad.isChecked == true) {
-                price += 1190000
+                intent.putExtra("iPad", 1190000)
+                clicked = true
             }
             if(appleWatch.isChecked == true) {
-                price += 359000
+                intent.putExtra("appleWatch", 359000)
+                clicked = true
             }
             if(macBook.isChecked == true) {
-                price += 1750000
+                intent.putExtra("macBook", 1750000)
+                clicked = true
             }
             if(airPods.isChecked == true) {
-                price += 150000;
+                intent.putExtra("airPods", 150000)
+                clicked = true
             }
 
-            Toast.makeText(this, "총합: "+price, Toast.LENGTH_SHORT).show()
+            if(clicked) {
+                startActivityForResult(intent, 0)
+                clicked = false
+            }
+            else {
+                Toast.makeText(this,"선택된 제품이 없습니다.",Toast.LENGTH_LONG).show()
+            }
 
-            val intent = Intent(this, PurchaseActivity::class.java)
-            startActivity(intent)
 
-            price = 0
         }
 
         // 장바구니 버튼 클릭 시 기능 구현

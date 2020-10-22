@@ -37,7 +37,7 @@
                 android:id="@+id/img1_check"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="iPad Pro" />
+                android:text="iPad" />
 
             <TextView
                 android:id="@+id/img1_content"
@@ -66,7 +66,7 @@
                 android:id="@+id/img2_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Apple Watch" />
+                android:text="appleWatch" />
 
             <TextView
                 android:id="@+id/img2_content"
@@ -94,7 +94,7 @@
                 android:id="@+id/img3_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mac Pro" />
+                android:text="macBook" />
 
             <TextView
                 android:id="@+id/img3_content"
@@ -123,7 +123,7 @@
                 android:id="@+id/img4_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Air pods" />
+                android:text="airPods" />
 
             <TextView
                 android:id="@+id/img4_content"

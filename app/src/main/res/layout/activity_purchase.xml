@@ -10,15 +10,15 @@
 
 
     <TextView
-        android:id="@+id/itemContent"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="구매페이지"
-        android:layout_columnSpan="2"
-        android:textColor="@android:color/background_dark"
-        android:textSize="30sp" />
+    android:id="@+id/itemContent"
+    android:layout_width="match_parent"
+    android:layout_height="46dp"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:text="소비자 정보 입력"
+    android:layout_columnSpan="2"
+    android:textColor="@android:color/background_dark"
+    android:textSize="30sp" />
 
     <TextView
         android:id="@+id/address"
@@ -26,10 +26,12 @@
         android:layout_marginLeft="30dp"
         />
     <EditText
+        android:id="@+id/get_Address"
         android:layout_width="250dp"
         android:text=""
         android:layout_marginRight="30dp"
         android:textSize="16dp"
+        android:hint="ex)사랑시 고백구 행복동"
         />
     <TextView
         android:id="@+id/tell"
@@ -37,10 +39,12 @@
         android:layout_marginLeft="30dp"
         />
     <EditText
+        android:id="@+id/get_Phone"
         android:layout_width="250dp"
         android:text=""
         android:layout_marginRight="30dp"
         android:textSize="16dp"
+        android:hint="ex)010-1234-5678"
         />
 
 
@@ -51,8 +55,113 @@
         android:textSize="20dp"
         />
     <TextView
+        android:id="@+id/total"
         android:text=""
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         />
+
+    <TextView
+        android:id="@+id/pur_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="상품 리스트"
+        android:layout_columnSpan="2"
+        android:textColor="@android:color/background_dark"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/itemTitle"
+        android:text="상품이름"
+        android:layout_marginLeft="30dp"
+        android:textSize="23dp"
+        android:textColor="#444444"
+        android:textFontWeight="3"
+        android:layout_gravity="center"
+        android:layout_marginTop="12sp"
+        android:paddingBottom="15sp"
+        />
+    <TextView
+        android:id="@+id/itemPrice"
+        android:text="가격정보"
+        android:textSize="23dp"
+        android:textColor="#444444"
+        android:textFontWeight="3"
+        android:layout_gravity="center"
+        android:layout_marginTop="12sp"
+        android:paddingBottom="15sp"
+        />
+
+
+<!--  상품 담을 TextView  -->
+    <TextView
+        android:id="@+id/firstItem"
+        android:text="macBook"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:paddingBottom="5sp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/firstItem_price"
+        android:layout_gravity="center"
+        android:text="1,750,000₩"
+        android:paddingBottom="5sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/secondItem"
+        android:text="airPods"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:paddingBottom="5sp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/secondItem_price"
+        android:layout_gravity="center"
+        android:text="150,000₩"
+        android:paddingBottom="5sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/thirdItem"
+        android:text="appleWatch"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:paddingBottom="5sp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/thirdItem_price"
+        android:layout_gravity="center"
+        android:text="359,000₩"
+        android:paddingBottom="5sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/fourthItem"
+        android:text="iPad"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/fourthItem_price"
+        android:layout_gravity="center"
+        android:text="1,190,000₩"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/getItem"
+        android:layout_columnSpan="2"
+        android:text="구매하기"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        />
+
 </GridLayout>

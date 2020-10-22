@@ -11,51 +11,33 @@ import android.widget.TextView
 
 // Adapter를 만들기 위한 Custom 어댑터
 class MainListAdapter (
-    context: Context,
-    myItem: ArrayList<ItemList>
+    val context: Context,
+    val myItem: ArrayList<Product>
 ) : BaseAdapter() {
-    private val mContext = context
-    private val mItem = myItem
-    private val mInflater = LayoutInflater.from(mContext)
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-//        val view: View = LayoutInflater.from(context).inflate(R.layout.main_layout_item, null)
-        var view = convertView
-        lateinit var holder : ViewHolder
+        val view: View = LayoutInflater.from(context).inflate(R.layout.activity_product, null)
 
-        if(view == null) {
-            holder = ViewHolder()
-            view = mInflater.inflate(R.layout.main_layout_item, null)
+        // product 레이아웃의 각 뷰 들을 가져온다.
+        val itemName = view.findViewById<TextView>(R.id.item_title)
+        val itemPrice = view.findViewById<TextView>(R.id.item_price)
+        val itemImg = view.findViewById<ImageView>(R.id.item_img)
+        val check = view.findViewById<CheckBox>(R.id.delete_check)
 
-            holder.itemName = view.findViewById(R.id.item_title)
-            holder.itemPrice = view.findViewById(R.id.item_price)
-            holder.photo = view.findViewById(R.id.item_img)
-            holder.check = view.findViewById(R.id.delete_check)
-
-            view.tag = holder
-
-            holder.itemName?.text = mItem[position].itemName
-            holder.itemPrice?.text = mItem[position].itemPrice
-            holder.photo?.setImageResource(mContext.resources.getIdentifier(mItem[position].photo, "drawable", mContext.packageName))
-            return view
-
-        } else {
-            holder = view.tag as ViewHolder
-        }
-
-
-        // 이미지, 상품 데이터를 ImageView, TextView 안에 담는다.
-        val items = mItem[position]
-        val resourceID = mContext.resources.getIdentifier(items.photo, "drawable", mContext.packageName)
-        holder.itemName?.text = items.itemName
-        holder.itemPrice?.text = items.itemPrice
-        holder.photo?.setImageResource(resourceID)
+        //Product 클래스 형태의 값을 가지고 있는 myItem 리스트를 불러온다.
+        //리스트 안의 데이터 값들을 리스트뷰 각각의 뷰에 값을 할당해준다.
+        val iList = myItem[position]
+        check.isChecked = false
+        itemName.text = iList.itemName
+        itemPrice.text = iList.itemPrice
+        itemImg.setImageResource(context.resources.getIdentifier(myItem[position].photo, "drawable", context.packageName))
 
         return view
     }
 
     override fun getItem(position: Int): Any {
-        return mItem[position]
+        return myItem[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -63,15 +45,7 @@ class MainListAdapter (
     }
 
     override fun getCount(): Int {
-        return mItem.size
-    }
-
-    inner class ViewHolder {
-        lateinit var itemName: TextView
-        lateinit var itemPrice: TextView
-        lateinit var photo: ImageView
-        lateinit var check: CheckBox
+        return myItem.size
     }
 
 }
-
