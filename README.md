@@ -7,6 +7,9 @@
 코틀린 언어를 이용한 쇼핑몰 어플 구현<br>
 파이어베이스 RealTime Database를 활용한 상품 장바구니 추가 및 삭제 기능
 
+## AVD Development Environment
+* Pixel 2 API 30 (다른 버전 사용 시 데이터베이스 연동 오류)
+
 ## 기능 설명
 ### MainActivity (상품 선택 페이지)
 * 상품 체크 후 구매하기 버튼 클릭 시 intent를 이용하여 구매 페이지에 데이터 전달
