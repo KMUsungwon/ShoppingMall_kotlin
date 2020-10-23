@@ -18,6 +18,7 @@ class PurchaseActivity : AppCompatActivity() {
 
         var totalPrice: Int = 0 // 총 결재 금액 변수이다.
 
+
         /* xml layout 에서 visibility = gone 으로 초기화 되어있던 TextView 가
         intent 에서 넘어온 상품 이름이 존재하면 그 이름에 맞는 TextView 의 Visibility 를 보이게 한다.
         */
@@ -47,8 +48,9 @@ class PurchaseActivity : AppCompatActivity() {
         getItem.setOnClickListener {
             // 주소 또는 연락처의 값이 비어있을 때 구매 버튼 클릭 시 경고 메시지를 출력한다.
             if(get_Address.text.toString() == "" || get_Phone.text.toString() == "") {
-                Toast.makeText(this,"올바른 고객 정보를 입력해주세요.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"주소 또는 연락처가 비어있습니다",Toast.LENGTH_SHORT).show()
             }
+
             // 구매 확정 메시지와 함께 첫번째 페이지로 이동한다.
             else {
                 Toast.makeText(this,"구매가 완료되었습니다!",Toast.LENGTH_SHORT).show()
