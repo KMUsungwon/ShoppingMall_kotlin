@@ -1,6 +1,8 @@
 # Mobile Programming Personal Project
 
-2020년도 2학기 모바일 프로그래밍 중간고사 대체 과제
+#### 2020년도 2학기 모바일 프로그래밍 02분반 중간고사 대체 과제
+Student Name : 임성원<br>
+Student ID : 20171686
 
 # 프로젝트 소개
 
